@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.SearchView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dicoding.bangkit.submission_fragmtny.databinding.ActivityMainBinding
@@ -35,6 +36,24 @@ class MainActivity : AppCompatActivity() {
         }
         mainViewmodel.isloading.observe(this) {
             showLoading(it)
+        }
+
+        binding.rvUser.apply {
+            requestFocus()
+                setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+                      androidx.appcompat.widget.SearchView.OnQueryTextListener {
+                    override fun onQueryTextSubmit(query: String?): Boolean {
+                        if (!query.isNullOrEmpty()){
+                            mainViewmodel.searchuser(query)
+                        }
+                        return true
+                    }
+
+                    override fun onQueryTextChange(newText: String?): Boolean {
+                        return true
+                    }
+
+                })
         }
     }
 
