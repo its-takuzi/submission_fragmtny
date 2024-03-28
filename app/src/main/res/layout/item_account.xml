@@ -16,15 +16,20 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        
+
         <ImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/pp_account"
             android:layout_width="70dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="8dp"
+            android:layout_height="70dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FF000000"
             android:scaleType="centerCrop"
+            tools:ignore="MissingConstraints"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
@@ -35,11 +40,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="48dp"
             android:layout_marginEnd="8dp"
             android:textStyle="bold"
+            android:textSize="15sp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="1.0"
+            card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toEndOf="@+id/pp_account"
             card_view:layout_constraintTop_toTopOf="parent"
             tools:text="submission_fragment_pemula" />
