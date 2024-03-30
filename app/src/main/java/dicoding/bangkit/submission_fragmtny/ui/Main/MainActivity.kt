@@ -9,19 +9,29 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dicoding.bangkit.submission_fragmtny.databinding.ActivityMainBinding
 import androidx.lifecycle.ViewModelProvider
+import dicoding.bangkit.submission_fragmtny.R
 import dicoding.bangkit.submission_fragmtny.data.response.ItemsItem
 import dicoding.bangkit.submission_fragmtny.ui.Detail.DetailAvtivity
+import dicoding.bangkit.submission_fragmtny.ui.theme.ThemeActivity
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var adapter: UserAdapter
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.topAppBar.setOnMenuItemClickListener{ menuItem ->
+            when(menuItem.itemId){
+                R.id.menu -> {
+                    val intent = Intent(this, ThemeActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
 
         val mainViewmodel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
             mainViewmodel::class.java)
