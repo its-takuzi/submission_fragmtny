@@ -9,10 +9,11 @@ import coil.transform.CircleCropTransformation
 import dicoding.bangkit.submission_fragmtny.data.database.Note
 import dicoding.bangkit.submission_fragmtny.data.response.ItemsItem
 import dicoding.bangkit.submission_fragmtny.databinding.ItemFavoriteBinding
+import dicoding.bangkit.submission_fragmtny.ui.Main.UserAdapter
 
 class favAdapter : RecyclerView.Adapter<favAdapter.FavoriteViewHolder>() {
     private val listFavorite = ArrayList<Note>()
-    private var onDeleteClickListener: OnDeleteClickListener? = null
+    private lateinit var onItemClickCallback: UserAdapter.OnItemClickCallback
 
     fun setListNotes(listNotes: List<Note>) {
         val diffCallback = NoteDiffCallback(this.listFavorite, listNotes)

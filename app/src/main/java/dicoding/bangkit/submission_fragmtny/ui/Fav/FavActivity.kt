@@ -1,12 +1,15 @@
 package dicoding.bangkit.submission_fragmtny.ui.Fav
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import dicoding.bangkit.submission_fragmtny.data.database.Note
 import dicoding.bangkit.submission_fragmtny.data.response.ItemsItem
 import dicoding.bangkit.submission_fragmtny.databinding.ActivityFavBinding
+import dicoding.bangkit.submission_fragmtny.ui.Detail.DetailAvtivity
 import dicoding.bangkit.submission_fragmtny.ui.Main.UserAdapter
 
 class FavActivity : AppCompatActivity() {
@@ -25,22 +28,16 @@ class FavActivity : AppCompatActivity() {
 
         adapter = UserAdapter()
 
-/*        favViewModel.getfavuser()?.observe(this) { users ->
-            val items = arrayListOf<ItemsItem>()
-            users.map {
-                val item = ItemsItem(login = it.login, avatarUrl = it.avatar_ulr)
-                items.add(item)
+        adapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: ItemsItem) {
+                Intent(this@FavActivity, DetailAvtivity::class.java).also {
+                    it.putExtra(DetailAvtivity.USER_NAME, data.login)
+                    it.putExtra(DetailAvtivity.EXTRA_ID, data.id)
+                    it.putExtra(DetailAvtivity.EXTRA_AVA, data.avatarUrl)
+                    startActivity(it)
+                }
             }
-            adapter.setListNotes(users)
-        }*/
-       /* favViewModel.getfavuser()?.observe(this) { users ->
-            val items = arrayListOf<ItemsItem>()
-            users.map {
-                val item = ItemsItem(login = it.login, avatarUrl = it.avatar_ulr)
-                items.add(item)
-            }
-            adapter.setListNotes(users)
-        }*/
+        })
 
         binding.apply {
             rvFav.setHasFixedSize(true)
@@ -51,14 +48,16 @@ class FavActivity : AppCompatActivity() {
         favViewModel.getfavuser()?.observe(this) {
             if (it != null) {
                 val list = mapList(it)
-                adapter.setList(list)
+                Log.d("favorite activity", "onCreate : ${list.size}")
+                adapter.submitList(list)
+
             }
         }
     }
 
-    private fun mapList(itemsItem: List<Note>): ArrayList<ItemsItem> {
+    private fun mapList(users: List<Note>): ArrayList<ItemsItem> {
         val listfav = ArrayList<ItemsItem>()
-        for ( items in itemsItem){
+        for ( items in users){
             val userMapped = ItemsItem(
                 items.login,
                 items.id.toString(),
