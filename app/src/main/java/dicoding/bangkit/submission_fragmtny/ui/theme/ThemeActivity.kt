@@ -14,7 +14,7 @@ class ThemeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_theme)
 
-        val switchtheme = findViewById<SwitchMaterial>(R.id.switch_theme)
+        val switchTheme = findViewById<SwitchMaterial>(R.id.switch_theme)
 
         val pref = settingpreference.getInstance(application.dataStore)
         val mainViewModel = ViewModelProvider(this, viewModelFactory(pref)).get(
@@ -23,15 +23,15 @@ class ThemeActivity : AppCompatActivity() {
         mainViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
             if (isDarkModeActive) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                switchtheme.isChecked = true
+                switchTheme.isChecked = true
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                switchtheme.isChecked = false
+                switchTheme.isChecked = false
             }
         }
 
-        switchtheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
+        switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
             mainViewModel.saveThemeSetting(isChecked)
         }
-    }
+}
 }

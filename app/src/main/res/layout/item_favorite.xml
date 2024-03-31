@@ -43,19 +43,6 @@
             app:layout_constraintStart_toEndOf="@+id/image_user"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabb_delet"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="16dp"
-            android:clickable="true"
-            android:foregroundGravity="bottom"
-            app:fabSize="normal"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/baseline_clear_24" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -22,6 +22,7 @@ open class DetailAvtivity : AppCompatActivity() {
     companion object {
         const val USER_NAME = "user_name"
         const val EXTRA_ID = "extra_id"
+        const val EXTRA_AVA = "extra_avatar"
 
         @StringRes
         private val TAB_TITLES = intArrayOf(
@@ -40,6 +41,7 @@ open class DetailAvtivity : AppCompatActivity() {
 
         val username = intent.getStringExtra(USER_NAME)
         val id = intent.getIntExtra(EXTRA_ID, 0)
+        val avatar = intent.getStringExtra(EXTRA_AVA)
         val bundle = Bundle()
         bundle.putString(USER_NAME, username)
 
@@ -89,15 +91,13 @@ open class DetailAvtivity : AppCompatActivity() {
         binding.fabb.setOnClickListener{
             _check = !_check
             if (_check){
-                detailmodel.addtofav(username, id)
+                detailmodel.addtofav(username, id, avatar)
             }else{
                 detailmodel.deletefav(id)
             }
             binding.fabb.isChecked = _check
         }
     }
-
-
 
     private fun showLoading(isLoading : Boolean){
         if (isLoading == true){

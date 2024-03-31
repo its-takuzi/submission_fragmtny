@@ -11,12 +11,12 @@ interface FavoriteDao {
     @Insert
     suspend fun addToFav(Note : Note)
 
-    @Query("SELECT * FROM fav_user")
+    @Query("SELECT * FROM Note")
     fun getfavuser(): LiveData<List<Note>>
 
-    @Query("SELECT count(*) FROM fav_user WHERE fav_user.id = :id" )
+    @Query("SELECT count(*) FROM Note WHERE Note.id = :id" )
     suspend fun checkuser(id : Int): Int
 
-    @Query( "DELETE FROM fav_user WHERE fav_user.id = :id")
+    @Query( "DELETE FROM Note WHERE Note.id = :id")
     suspend fun deletefromfav(id: Int): Int
 }

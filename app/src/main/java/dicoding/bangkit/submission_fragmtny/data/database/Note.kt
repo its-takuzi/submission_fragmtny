@@ -5,10 +5,11 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
-@Entity(tableName = "fav_user")
+@Entity
 @Parcelize
 data class Note(
     val login: String?,
     @PrimaryKey
-    val id: Int
+    val id: Int,
+    val avatar_ulr : String?
 ) :Parcelable

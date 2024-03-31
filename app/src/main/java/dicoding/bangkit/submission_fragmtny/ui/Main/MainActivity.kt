@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import dicoding.bangkit.submission_fragmtny.R
 import dicoding.bangkit.submission_fragmtny.data.response.ItemsItem
 import dicoding.bangkit.submission_fragmtny.ui.Detail.DetailAvtivity
+import dicoding.bangkit.submission_fragmtny.ui.Fav.FavActivity
 import dicoding.bangkit.submission_fragmtny.ui.theme.ThemeActivity
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +25,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.topAppBar.setOnMenuItemClickListener{ menuItem ->
             when(menuItem.itemId){
+                R.id.favmenu -> {
+                    val intent = Intent(this, FavActivity::class.java )
+                    startActivity(intent)
+                    true
+                }
                 R.id.menu -> {
                     val intent = Intent(this, ThemeActivity::class.java)
                     startActivity(intent)
@@ -76,6 +82,7 @@ class MainActivity : AppCompatActivity() {
                 Intent(this@MainActivity, DetailAvtivity::class.java).also {
                     it.putExtra(DetailAvtivity.USER_NAME, data.login)
                     it.putExtra(DetailAvtivity.EXTRA_ID, data.id)
+                    it.putExtra(DetailAvtivity.EXTRA_AVA, data.avatarUrl)
                     startActivity(it)
                 }
             }

@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Submission_fragmtny"
         tools:targetApi="31">
         <activity
-            android:name=".activityFavorite"
+            android:name=".ui.Fav.FavActivity"
             android:exported="false" />
         <activity
             android:name=".ui.theme.ThemeActivity"
