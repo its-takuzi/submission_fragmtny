@@ -59,9 +59,9 @@ class FavActivity : AppCompatActivity() {
         val listfav = ArrayList<ItemsItem>()
         for ( items in users){
             val userMapped = ItemsItem(
-                items.login,
-                items.id.toString(),
-                items.avatar_ulr
+                login = items.login,
+                id = items.id,
+                avatarUrl = items.avatar_ulr
             )
         listfav.add(userMapped)
         }

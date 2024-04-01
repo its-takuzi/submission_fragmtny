@@ -1,20 +1,21 @@
 package dicoding.bangkit.submission_fragmtny.ui.Main
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import dicoding.bangkit.submission_fragmtny.data.response.ItemsItem
 import dicoding.bangkit.submission_fragmtny.data.response.UserResponse
 import dicoding.bangkit.submission_fragmtny.data.retrofit.ApiConfig
+import dicoding.bangkit.submission_fragmtny.ui.theme.settingpreference
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class mainViewmodel : ViewModel() {
+class mainViewmodel (private val pref: settingpreference) : ViewModel() {
 
     private val _user = MutableLiveData<List<ItemsItem?>>()
     val user : LiveData<List<ItemsItem?>> = _user
+
 
     private val _isloading = MutableLiveData<Boolean>()
     val isloading : LiveData<Boolean> = _isloading
@@ -70,6 +71,16 @@ class mainViewmodel : ViewModel() {
             }
         })
 
+    }
+
+    fun getThemeSettings(): LiveData<Boolean> {
+        return pref.getThemeSetting().asLiveData()
+    }
+
+    fun saveThemeSetting(isDarkModeActive: Boolean) {
+        viewModelScope.launch {
+            pref.saveThemeSetting(isDarkModeActive)
+        }
     }
 
 

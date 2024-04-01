@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
 import dicoding.bangkit.submission_fragmtny.data.database.Note
-import dicoding.bangkit.submission_fragmtny.data.response.ItemsItem
 import dicoding.bangkit.submission_fragmtny.databinding.ItemFavoriteBinding
 import dicoding.bangkit.submission_fragmtny.ui.Main.UserAdapter
 
@@ -49,7 +48,6 @@ class favAdapter : RecyclerView.Adapter<favAdapter.FavoriteViewHolder>() {
         }
     }
 
-    //    supaya click bisa di akses dari activity
     interface OnDeleteClickListener {
         fun onDeleteClick(favorite: Note)
     }

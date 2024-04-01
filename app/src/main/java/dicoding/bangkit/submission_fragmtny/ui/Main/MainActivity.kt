@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.SearchView
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dicoding.bangkit.submission_fragmtny.databinding.ActivityMainBinding
@@ -13,7 +14,7 @@ import dicoding.bangkit.submission_fragmtny.R
 import dicoding.bangkit.submission_fragmtny.data.response.ItemsItem
 import dicoding.bangkit.submission_fragmtny.ui.Detail.DetailAvtivity
 import dicoding.bangkit.submission_fragmtny.ui.Fav.FavActivity
-import dicoding.bangkit.submission_fragmtny.ui.theme.ThemeActivity
+import dicoding.bangkit.submission_fragmtny.ui.theme.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +23,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val pref = settingpreference.getInstance(application.dataStore)
+        val viewmodelll = ViewModelProvider(this, viewModelFactory(pref)).get(
+            mainViewmodel::class.java
+        )
+
+        viewmodelll.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
 
         binding.topAppBar.setOnMenuItemClickListener{ menuItem ->
             when(menuItem.itemId){
@@ -92,4 +106,6 @@ class MainActivity : AppCompatActivity() {
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
+
+
 }
